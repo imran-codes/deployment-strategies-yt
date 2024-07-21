@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: green-deployment
+spec:
+  selector:
+    matchLabels:
+      app: green-vite-app
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: green-vite-app
+        version: green
+    spec:
+      containers:
+        - name: green-vite-app-container
+          image: green-vite-app-image:green
+          resources:
+            limits:
+              cpu: "1"
+              memory: "1Gi"

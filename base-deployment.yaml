@@ -1,0 +1,24 @@
+# base-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: base-deployment
+spec:
+  selector:
+    matchLabels:
+      app: canary
+      version: base
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: canary
+        version: base
+    spec:
+      containers:
+        - name: canary-container
+          image: canary-image:latest
+          resources:
+            limits:
+              cpu: "1"
+              memory: "1Gi"

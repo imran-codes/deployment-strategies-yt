@@ -1,0 +1,17 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: traffic-splitting-service
+spec:
+  hosts:
+    - "traffic-splitting-service"
+  http:
+    - route:
+        - destination:
+            host: traffic-splitting-service
+            subset: base
+          weight: 90
+        - destination:
+            host: traffic-splitting-service
+            subset: canary
+          weight: 10
